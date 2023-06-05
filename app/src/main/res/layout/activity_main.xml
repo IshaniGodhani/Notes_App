@@ -18,8 +18,8 @@
             android:id="@+id/search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="250dp"
-            android:clickable="true" />
+            android:clickable="true"
+            android:layout_marginStart="70dp"/>
 
         <ImageView
             android:layout_width="50dp"
@@ -36,8 +36,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/recyclerview"
-            android:layout_margin="20dp"/>
+            android:id="@+id/recyclerview" />
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,26 +50,7 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="4.5"
-        android:orientation="horizontal" >
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:id="@+id/home"
-            android:src="@drawable/baseline_home_24"
-            android:layout_marginStart="130dp"
-            android:layout_marginTop="15dp"/>
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:id="@+id/folder"
-            android:src="@drawable/baseline_folder_24"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="15dp"/>
-    </LinearLayout>
+
 
 
 
