@@ -27,6 +27,16 @@ public class Add_notes_Activity extends AppCompatActivity {
         check=findViewById(R.id.check);
 
 
+        if(getIntent().getExtras()!=null)
+        {
+
+            String up_title = getIntent().getStringExtra("title");
+            String up_note = getIntent().getStringExtra("note");
+            title.setText("" + up_title);
+            notes.setText("" + up_note);
+        }
+
+
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,15 +67,10 @@ public class Add_notes_Activity extends AppCompatActivity {
                             startActivity(intent);
                             finish();
                         }
-                }
-                if(getIntent().getExtras()!=null) {
-                    int id = getIntent().getIntExtra("Id", 0);
-                    String up_title = getIntent().getStringExtra("title");
-                    String up_note = getIntent().getStringExtra("note");
-                    title.setText("" + up_title);
-                    notes.setText("" + up_note);
-                    if(getIntent().getExtras()!=null) {
-
+                    }
+                    if(getIntent().getExtras()!=null)
+                    {
+                        int id = getIntent().getIntExtra("Id", 0);
                         String txt1 = title.getText().toString();
                         String txt2 = notes.getText().toString();
 
@@ -85,7 +90,7 @@ public class Add_notes_Activity extends AppCompatActivity {
                             startActivity(intent);
                             finish();
                         }
-                    }
+
                 }
             }
         });
