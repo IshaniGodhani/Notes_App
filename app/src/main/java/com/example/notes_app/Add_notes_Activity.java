@@ -11,10 +11,14 @@ import android.widget.ImageView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Add_notes_Activity extends AppCompatActivity {
     ImageView back;
     EditText title,notes;
     FloatingActionButton check;
+    NotesModel note;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -26,6 +30,10 @@ public class Add_notes_Activity extends AppCompatActivity {
         notes=findViewById(R.id.content);
         check=findViewById(R.id.check);
 
+        SimpleDateFormat format = new SimpleDateFormat("EEE, d MMM yyyy HH:mm a");
+        Date date = new Date();
+
+        note.setDate(format.format(date));
 
         if(getIntent().getExtras()!=null)
         {

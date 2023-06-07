@@ -1,6 +1,7 @@
 package com.example.notes_app;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,14 +10,12 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.SearchView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-        ImageView menu,home,folder;
         SearchView searchView;
         RecyclerView recyclerView;
         RecyclerAdapter adapter;
@@ -29,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         recyclerView=findViewById(R.id.recyclerview);
         fab=findViewById(R.id.fab);
+        searchView=findViewById(R.id.search);
 
 
         DBHelper dbHelper = new DBHelper(MainActivity.this);
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             int id = cursor.getInt(0);
             String title = cursor.getString(1);
             String note = cursor.getString(2);
-            NotesModel user = new NotesModel(id, title, note);
+            NotesModel user = new NotesModel(id, title, note,);
             userList.add(user);
 
 
@@ -53,6 +53,25 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Add_notes_Activity.class);
                 startActivity(intent);
+            }
+        });
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                ArrayList<NotesModel> filteredList = new ArrayList<>();
+                for (NotesModel singleNote : userList){
+                    if (singleNote.getTitle().toLowerCase().contains(newText.toLowerCase())
+                            || singleNote.getNote().toLowerCase().contains(newText.toLowerCase())){
+                        filteredList.add(singleNote);
+                    }
+                    adapter.filterlist(filteredList);
+                }
+                return true;
             }
         });
     }

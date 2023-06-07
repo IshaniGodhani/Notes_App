@@ -38,9 +38,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.View_H
         int id=notesModel.getId();
         String title= notesModel.getTitle();
         String note= notesModel.getNote();
+        String date=notesModel.getDate();
 
         holder.title.setText(""+title);
         holder.note.setText(""+note);
+        holder.date.setText(""+date);
 
         holder.menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +78,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.View_H
         });
 
     }
+    public void filterlist(ArrayList<NotesModel> filteredList){
+        userList = filteredList;
+        notifyDataSetChanged();
+    }
 
     @Override
     public int getItemCount() {
@@ -83,13 +89,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.View_H
     }
 
     public class View_Holder extends RecyclerView.ViewHolder {
-        TextView note,title;
+        TextView note,title,date;
         ImageView menu;
         public View_Holder(@NonNull View itemView) {
             super(itemView);
             note=itemView.findViewById(R.id.re_note);
             title=itemView.findViewById(R.id.re_title);
             menu=itemView.findViewById(R.id.menu);
+            date=itemView.findViewById(R.id.date);
         }
     }
 }
