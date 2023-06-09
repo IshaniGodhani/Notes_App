@@ -11,9 +11,13 @@ import android.widget.ImageView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Add_notes_Activity extends AppCompatActivity {
     ImageView back;
     EditText title,notes;
+    NotesModel notesModel;
     FloatingActionButton check;
 
     @SuppressLint("MissingInflatedId")
@@ -45,6 +49,7 @@ public class Add_notes_Activity extends AppCompatActivity {
                 {
                     String titles = title.getText().toString();
                     String note = notes.getText().toString();
+
                     if (title.getText().toString().equals("") && notes.getText().toString().equals(""))
                         {
                             title.setError("Enter Title");
@@ -61,8 +66,12 @@ public class Add_notes_Activity extends AppCompatActivity {
                         else {
                             title.setError(null);
                             notes.setError(null);
+                            SimpleDateFormat format = new SimpleDateFormat("EEE, d MMM yyyy HH:mm a");
+                            Date date =new Date();
+                            notesModel.setDate(format.format(date));
+                            String time= format.format(date);
                             DBHelper dbHelper=new DBHelper(Add_notes_Activity.this);
-                            dbHelper.insertData(titles, note);
+                            dbHelper.insertData(titles, note,time);
                             Intent intent = new Intent(Add_notes_Activity.this, MainActivity.class);
                             startActivity(intent);
                             finish();
@@ -84,8 +93,12 @@ public class Add_notes_Activity extends AppCompatActivity {
                         } else {
                             title.setError(null);
                             notes.setError(null);
+                            SimpleDateFormat format = new SimpleDateFormat("EEE, d MMM yyyy HH:mm a");
+                            Date date = new Date();
+                            notesModel.setDate(format.format(date));
+                            String time= format.format(date);
                             DBHelper dbHelper = new DBHelper(Add_notes_Activity.this);
-                            dbHelper.updateData(id, txt1, txt2);
+                            dbHelper.updateData(id, txt1, txt2,time);
                             Intent intent = new Intent(Add_notes_Activity.this, MainActivity.class);
                             startActivity(intent);
                             finish();
@@ -94,6 +107,8 @@ public class Add_notes_Activity extends AppCompatActivity {
                 }
             }
         });
+
+
 
     }
 }

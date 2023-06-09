@@ -1,15 +1,21 @@
 package com.example.notes_app;
 
+import java.util.Date;
+
 public class NotesModel {
    int id;
    String title;
    String note;
+   String date;
 
-    public NotesModel(int id, String title, String note) {
+    public NotesModel(int id, String title, String note, Date date) {
         this.id = id;
         this.title = title;
         this.note = note;
+        this.date= this.date;
     }
+
+
 
     public int getId() {
         return id;
@@ -33,6 +39,14 @@ public class NotesModel {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }
 

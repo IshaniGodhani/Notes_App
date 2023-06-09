@@ -16,7 +16,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String query="create table Notes (id integer primary key autoincrement, title text, note text)";
+        String query="create table Notes (id integer primary key autoincrement, title text, note text,currentdate date)";
         sqLiteDatabase.execSQL(query);
 
     }
@@ -25,9 +25,9 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
     }
-    public void insertData(String title, String note)
+    public void insertData(String title, String note,String date)
     {
-        String query="insert into Notes (title,note) values('"+title+"','"+note+"')";
+        String query="insert into Notes (title,note,date) values('"+title+"','"+note+"','"+date+"')";
         SQLiteDatabase database;
         database=getWritableDatabase();
         database.execSQL(query);
@@ -48,9 +48,9 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(query);
 
     }
-    public void updateData(int id, String title, String note)
+    public void updateData(int id, String title, String note,String date)
     {
-        String query="Update Notes set title='"+title+"',note='"+note+"' where id='"+id+"'";
+        String query="Update Notes set title='"+title+"',note='"+note+"',date='"+date+"' where id='"+id+"'";
         SQLiteDatabase sqLiteDatabase=getWritableDatabase();
         sqLiteDatabase.execSQL(query);
     }
