@@ -19,6 +19,7 @@ public class Add_notes_Activity extends AppCompatActivity {
     EditText title,notes;
     NotesModel notesModel;
     FloatingActionButton check;
+    NotesModel note;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -30,6 +31,10 @@ public class Add_notes_Activity extends AppCompatActivity {
         notes=findViewById(R.id.content);
         check=findViewById(R.id.check);
 
+        SimpleDateFormat format = new SimpleDateFormat("EEE, d MMM yyyy HH:mm a");
+        Date date = new Date();
+
+        note.setDate(format.format(date));
 
         if(getIntent().getExtras()!=null)
         {
